@@ -4,6 +4,7 @@ export default function Home() {
       name: "Mixmax",
       budget_name: "Software subscription",
       owner_id: 1,
+      id: 1,
       spent: {
         value: 0,
         currency: "SGD",
@@ -21,6 +22,7 @@ export default function Home() {
       name: "Quickbooks",
       budget_name: "Software subscription",
       owner_id: 2,
+      id: 2,
       spent: {
         value: 5,
         currency: "SGD",
@@ -38,6 +40,7 @@ export default function Home() {
       name: "Motion",
       budget_name: "Software subscription",
       owner_id: 3,
+      id: 3,
       spent: {
         value: 0,
         currency: "SGD",
@@ -55,6 +58,7 @@ export default function Home() {
       name: "Pandadoc",
       budget_name: "Software subscription",
       owner_id: 4,
+      id: 4,
       spent: {
         value: 148,
         currency: "SGD",
