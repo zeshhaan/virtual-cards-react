@@ -4,7 +4,6 @@ export default function Home() {
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
-
   return (
     <ul
       role="list"
