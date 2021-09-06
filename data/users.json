@@ -1,0 +1,150 @@
+[
+    {
+        "id": 1,
+        "name": "Mixmax",
+        "budget_name": "Software subscription",
+        "owner_id": 1,
+        "spent": {
+            "value": 0,
+            "currency": "SGD"
+        },
+        "available_to_spend": {
+            "value": 9,
+            "currency": "SGD"
+        },
+        "card_type": "burner",
+        "expiry": "9 feb",
+        "limit": 100,
+        "status": "active"
+    },
+    {
+        "id": 2,
+        "name": "Quickbooks",
+        "budget_name": "Software subscription",
+        "owner_id": 2,
+        "spent": {
+            "value": 5,
+            "currency": "SGD"
+        },
+        "available_to_spend": {
+            "value": 1,
+            "currency": "SGD"
+        },
+        "card_type": "subscription",
+        "expiry": "9 feb",
+        "limit": 100,
+        "status": "active"
+    },
+    {
+        "id": 3,
+        "name": "Motion",
+        "budget_name": "Software subscription",
+        "owner_id": 3,
+        "spent": {
+            "value": 0,
+            "currency": "SGD"
+        },
+        "available_to_spend": {
+            "value": 15,
+            "currency": "SGD"
+        },
+        "card_type": "subscription",
+        "expiry": "9 feb",
+        "limit": 100,
+        "status": "active"
+    },
+    {
+        "id": 4,
+        "name": "Pandadoc",
+        "budget_name": "Software subscription",
+        "owner_id": 4,
+        "spent": {
+            "value": 148,
+            "currency": "SGD"
+        },
+        "available_to_spend": {
+            "value": 30,
+            "currency": "SGD"
+        },
+        "card_type": "burner",
+        "expiry": "9 feb",
+        "limit": 100,
+        "status": "active"
+    },
+    {
+        "name": "Mohammed Zeeshan",
+        "budget_name": "Test",
+        "available_to_spend": {
+            "value": "123",
+            "currency": "SGD"
+        },
+        "card_type": "Burner",
+        "limit": "123",
+        "owner_id": "1",
+        "status": "active",
+        "spent": {
+            "value": 0,
+            "currency": "SGD"
+        },
+        "id": 5,
+        "dateCreated": "2021-09-06T16:30:15.935Z",
+        "expiry": "Oct 4"
+    },
+    {
+        "name": "Mohammed Zeeshan",
+        "budget_name": "Test",
+        "available_to_spend": {
+            "value": "123",
+            "currency": "SGD"
+        },
+        "card_type": "Subscription",
+        "limit": "123",
+        "owner_id": "1",
+        "status": "active",
+        "spent": {
+            "value": 0,
+            "currency": "SGD"
+        },
+        "id": 6,
+        "dateCreated": "2021-09-06T16:31:45.562Z",
+        "expiry": "Oct 4"
+    },
+    {
+        "name": "Mohammed Zeeshan",
+        "budget_name": "Test",
+        "available_to_spend": {
+            "value": "123",
+            "currency": "SGD"
+        },
+        "card_type": "Subscription",
+        "limit": "123",
+        "owner_id": "1",
+        "status": "active",
+        "spent": {
+            "value": 0,
+            "currency": "SGD"
+        },
+        "id": 7,
+        "dateCreated": "2021-09-06T16:33:27.339Z",
+        "expiry": "Oct 4"
+    },
+    {
+        "name": "Mohammed Zeeshan",
+        "budget_name": "Test",
+        "available_to_spend": {
+            "value": "123",
+            "currency": "SGD"
+        },
+        "card_type": "Burner",
+        "limit": "123",
+        "owner_id": "1",
+        "status": "active",
+        "spent": {
+            "value": 0,
+            "currency": "SGD"
+        },
+        "id": 8,
+        "dateCreated": "2021-09-06T16:37:56.831Z",
+        "expiry": "Oct 4"
+    }
+]

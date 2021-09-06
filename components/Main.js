@@ -1,81 +1,10 @@
 export default function Home() {
-  const cards = [
-    {
-      name: "Mixmax",
-      budget_name: "Software subscription",
-      owner_id: 1,
-      id: 1,
-      spent: {
-        value: 0,
-        currency: "SGD",
-      },
-      available_to_spend: {
-        value: 9,
-        currency: "SGD",
-      },
-      card_type: "burner",
-      expiry: "9 feb",
-      limit: 100,
-      status: "active",
-    },
-    {
-      name: "Quickbooks",
-      budget_name: "Software subscription",
-      owner_id: 2,
-      id: 2,
-      spent: {
-        value: 5,
-        currency: "SGD",
-      },
-      available_to_spend: {
-        value: 1,
-        currency: "SGD",
-      },
-      card_type: "subscription",
-      expiry: "9 feb",
-      limit: 100,
-      status: "active",
-    },
-    {
-      name: "Motion",
-      budget_name: "Software subscription",
-      owner_id: 3,
-      id: 3,
-      spent: {
-        value: 0,
-        currency: "SGD",
-      },
-      available_to_spend: {
-        value: 15,
-        currency: "SGD",
-      },
-      card_type: "subscription",
-      expiry: "9 feb",
-      limit: 100,
-      status: "active",
-    },
-    {
-      name: "Pandadoc",
-      budget_name: "Software subscription",
-      owner_id: 4,
-      id: 4,
-      spent: {
-        value: 148,
-        currency: "SGD",
-      },
-      available_to_spend: {
-        value: 30,
-        currency: "SGD",
-      },
-      card_type: "burner",
-      expiry: "9 feb",
-      limit: 100,
-      status: "active",
-    },
-  ];
+  let cards = require("../data/users.json");
+
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
+
   return (
     <ul
       role="list"
@@ -103,11 +32,11 @@ export default function Home() {
                 <img
                   className="w-10 h-10 bg-pink-50 rounded-full flex-shrink-0 shadow-md p-2"
                   src={`${
-                    card.card_type === "burner"
+                    card.card_type == "subscription"
                       ? "/burner.svg"
-                      : "subscription.svg"
+                      : "/subscription.svg"
                   }`}
-                  alt=""
+                  alt={card.card_type}
                 />
                 <p className="mt-4 text-gray-500 text-sm truncate capitalize">
                   {card.card_type === "burner"

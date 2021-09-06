@@ -1,8 +1,16 @@
+import { useRouter } from "next/router";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { useForm } from "react-hook-form";
+import { userService } from "../../services";
+
+import toast, { Toaster } from "react-hot-toast";
+
+const sucessNotify = () => toast.success("Card Added!");
+const errorNotify = () => toast.error("Error");
 
 const Header = () => {
+  const router = useRouter();
   let [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
@@ -16,10 +24,27 @@ const Header = () => {
   } = useForm();
 
   // const onSubmit = (data) => console.log(data);
+  // function onSubmit(data) {
+  //   // display form data on success
+  //   alert("SUCCESS!! :-)\n\n" + JSON.stringify(data, null, 4));
+  //   return false;
+  // }
+
   function onSubmit(data) {
-    // display form data on success
-    alert("SUCCESS!! :-)\n\n" + JSON.stringify(data, null, 4));
-    return false;
+    return createUser(data);
+  }
+
+  function createUser(data) {
+    console.table(data);
+    return userService
+      .create(data)
+      .then(() => {
+        sucessNotify();
+        router.push(".");
+        // closeModal();
+        // reset();
+      })
+      .catch(errorNotify);
   }
 
   return (
@@ -84,7 +109,7 @@ const Header = () => {
                       <form onSubmit={handleSubmit(onSubmit)} id="hook-form">
                         <div className="mt-6 sm:mt-5 space-y-6 sm:space-y-2">
                           <label
-                            htmlFor="cardName"
+                            htmlFor="name"
                             className="block text-sm font-medium text-gray-700"
                           >
                             Card Name
@@ -92,55 +117,49 @@ const Header = () => {
                           <div className="mt-1">
                             <input
                               type="text"
-                              name="cardName"
-                              id="cardName"
+                              name="name"
+                              id="name"
                               placeholder="bill"
-                              {...register("cardName", { required: true })}
+                              {...register("name", { required: true })}
                               className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-pink-500 focus:ring-1 focus:ring-pink-500"
                             />
                           </div>
-                          {errors.cardName?.type === "required" && (
+                          {errors.name?.type === "required" && (
                             <p className="text-red-500">
                               Card Name is required
                             </p>
                           )}
                         </div>
                         <div className="max-w-lg mt-6 sm:mt-5 space-y-6 sm:space-y-2">
-                          <p className="text-sm text-gray-500">Type of Card</p>
                           <div className="mt-4 flex gap-4">
-                            <div className="flex items-center">
-                              <input
-                                id="burner"
-                                name="card-type"
-                                type="radio"
-                                className="focus:ring-pink-500 h-4 w-4 text-pink-600 border-gray-300"
-                              />
+                            <div className="flex flex-col">
                               <label
-                                htmlFor="burner"
-                                className="ml-3 block text-sm font-medium text-gray-700"
+                                htmlFor="card_type"
+                                className="block text-sm font-medium text-gray-700"
                               >
-                                Burner
+                                Card Type
                               </label>
-                            </div>
-                            <div className="flex items-center">
-                              <input
-                                id="subscription"
-                                name="card-type"
-                                type="radio"
-                                className="focus:ring-pink-500 h-4 w-4 text-pink-600 caret-pink-500 border-gray-300"
-                              />
-                              <label
-                                htmlFor="subscription"
-                                className="ml-3 block text-sm font-medium text-gray-700"
+                              <select
+                                defaultValue="card_type"
+                                name="card_type"
+                                className="w-full border-gray-300 focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm rounded-md"
+                                defaultValue="burner"
+                                {...register("card_type", { required: true })}
                               >
-                                Subscription
-                              </label>
+                                <option>Burner</option>
+                                <option>Subscription</option>
+                              </select>
                             </div>
+                            {errors.card_type?.type === "required" && (
+                              <p className="text-red-500">
+                                Card Type is required
+                              </p>
+                            )}
                           </div>
                         </div>
                         <div className="mt-6 sm:mt-5 space-y-6 sm:space-y-2">
                           <label
-                            htmlFor="budgetName"
+                            htmlFor="budget_name"
                             className="block text-sm font-medium text-gray-700"
                           >
                             Budget Name
@@ -148,14 +167,14 @@ const Header = () => {
                           <div className="mt-1">
                             <input
                               type="text"
-                              name="budgetName"
-                              id="budgetName"
+                              name="budget_name"
+                              id="budget_name"
                               className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-pink-500 focus:ring-1 focus:ring-pink-500"
                               placeholder="Software Subscription"
-                              {...register("budgetName", { required: true })}
+                              {...register("budget_name", { required: true })}
                             />
                           </div>
-                          {errors.budgetName?.type === "required" && (
+                          {errors.budget_name?.type === "required" && (
                             <p className="text-red-500">
                               Budget Name is required
                             </p>
@@ -163,7 +182,7 @@ const Header = () => {
                         </div>
                         <div className="mt-6 sm:mt-5 space-y-6 sm:space-y-2">
                           <label
-                            htmlFor="amount"
+                            htmlFor="value"
                             className="block text-sm font-medium text-gray-700"
                           >
                             Amount to Add
@@ -176,18 +195,18 @@ const Header = () => {
                             </div>
                             <input
                               type="text"
-                              name="amount"
-                              id="amount"
+                              name="value"
+                              id="value"
                               className=" block w-full pl-12 pr-12 sm:text-sm border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:border-pink-500 focus:ring-1 focus:ring-pink-500"
                               placeholder="0.00"
                               aria-describedby="price-currency"
-                              {...register("amount", {
+                              {...register("value", {
                                 required: true,
                                 min: 10,
                               })}
                             />
                           </div>
-                          {errors.amount?.type === "required" && (
+                          {errors.value?.type === "required" && (
                             <p className="text-red-500">
                               Enter an Amount to add
                             </p>
@@ -200,10 +219,10 @@ const Header = () => {
                           type="submit"
                           form="hook-form"
                           className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-500 border border-transparent rounded-md hover:bg-green-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                          onClick={closeModal}
                         >
                           Add Card
                         </button>
+
                         <button
                           type="button"
                           onClick={() => reset()}
@@ -219,6 +238,7 @@ const Header = () => {
             </Transition>
           </>
         </span>
+        <Toaster position="bottom-center" reverseOrder={false} />
       </div>
     </div>
   );

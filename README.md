@@ -9,6 +9,15 @@
 - [ ] Search card by `name`
 - [ ] Filter card by `card_type`
 
+### Added Features so far
+
+- [x] Different styles for Burner and Subscription cards
+- [x] Form Modal with Validation to create new virtual card
+- [x] Data saved to local json file
+- [ ] Add basic auth
+- [ ] Navigate through tabs
+- [ ] Filter cards by name
+
 To run this app on your local machine, follow these steps after clong the repo
 
 ```bash
