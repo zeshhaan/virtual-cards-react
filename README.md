@@ -6,8 +6,8 @@
 - [ ] User can create card and see it on `your` tab
 - [ ] Add enough cards to experience pagination
 - [ ] Pagination with limit of 10 cards/page
-- [ ] Search by card name
-- [ ] Filter card by card_type
+- [ ] Search card by `name`
+- [ ] Filter card by `card_type`
 
 To run this app on your local machine, follow these steps after clong the repo
 
