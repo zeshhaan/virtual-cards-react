@@ -1,6 +1,8 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
 
 const Header = () => {
   let [isOpen, setIsOpen] = useState(false);
@@ -8,9 +10,25 @@ const Header = () => {
   function closeModal() {
     setIsOpen(false);
   }
+  const validationSchema = Yup.object().shape({
+    cardName: Yup.string().required("Card Name is required"),
+    budgetName: Yup.string().required("Budget Name is required"),
+    amount: Yup.string().required("Amount is required"),
+  });
+  const formOptions = { resolver: yupResolver(validationSchema) };
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm(formOptions);
 
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  // const onSubmit = (data) => console.log(data);
+  function onSubmit(data) {
+    // display form data on success
+    alert("SUCCESS!! :-)\n\n" + JSON.stringify(data, null, 4));
+    return false;
+  }
 
   return (
     <div className="lg:flex lg:items-center lg:justify-between mb-5">
@@ -71,10 +89,10 @@ const Header = () => {
                       >
                         Create your card
                       </Dialog.Title>
-                      <form action="#" method="POST">
+                      <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="mt-6 sm:mt-5 space-y-6 sm:space-y-2">
                           <label
-                            htmlFor="email"
+                            htmlFor="cardName"
                             className="block text-sm font-medium text-gray-700"
                           >
                             Card Name
@@ -82,11 +100,15 @@ const Header = () => {
                           <div className="mt-1">
                             <input
                               type="text"
-                              name="name"
-                              id="name"
+                              name="cardName"
+                              id="cardName"
+                              placeholder="bill"
+                              {...register("cardName", { required: true })}
                               className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-pink-500 focus:ring-1 focus:ring-pink-500"
-                              placeholder="ABC Company"
                             />
+                            <div className="text-red-500">
+                              {errors.cardName?.message}
+                            </div>
                           </div>
                         </div>
                         <div className="max-w-lg mt-6 sm:mt-5 space-y-6 sm:space-y-2">
@@ -124,7 +146,7 @@ const Header = () => {
                         </div>
                         <div className="mt-6 sm:mt-5 space-y-6 sm:space-y-2">
                           <label
-                            htmlFor="email"
+                            htmlFor="budgetName"
                             className="block text-sm font-medium text-gray-700"
                           >
                             Budget Name
@@ -132,16 +154,20 @@ const Header = () => {
                           <div className="mt-1">
                             <input
                               type="text"
-                              name="name"
-                              id="name"
+                              name="budgetName"
+                              id="budgetName"
                               className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-pink-500 focus:ring-1 focus:ring-pink-500"
                               placeholder="Software Subscription"
+                              {...register("budgetName", { required: true })}
                             />
+                            <div className="text-red-500">
+                              {errors.budgetName?.message}
+                            </div>
                           </div>
                         </div>
                         <div className="mt-6 sm:mt-5 space-y-6 sm:space-y-2">
                           <label
-                            htmlFor="price"
+                            htmlFor="amount"
                             className="block text-sm font-medium text-gray-700"
                           >
                             Amount to Add
@@ -154,23 +180,37 @@ const Header = () => {
                             </div>
                             <input
                               type="text"
-                              name="price"
-                              id="price"
+                              name="amount"
+                              id="amount"
                               className=" block w-full pl-12 pr-12 sm:text-sm border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:border-pink-500 focus:ring-1 focus:ring-pink-500"
                               placeholder="0.00"
                               aria-describedby="price-currency"
+                              {...register("amount", {
+                                required: true,
+                                min: 10,
+                              })}
                             />
+                            <div className="text-red-500">
+                              {errors.amount?.message}
+                            </div>
                           </div>
                         </div>
                       </form>
 
-                      <div className="mt-4">
+                      <div className="mt-4 flex gap-2">
                         <button
-                          type="button"
+                          type="submit"
                           className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-500 border border-transparent rounded-md hover:bg-green-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                          onClick={closeModal}
+                          // onClick={closeModal}
                         >
                           Add Card
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => reset()}
+                          className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-gray-400 border border-transparent rounded-md hover:bg-gray-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                        >
+                          Reset
                         </button>
                       </div>
                     </div>
