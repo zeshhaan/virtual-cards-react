@@ -1,13 +1,13 @@
 ### Project Requirements
 
 - [x] Cards of 2 types - Burner and Subscription
-- [x] Burner cards will have expiry date and burner icon
-- [x] Subscription card will have some kind of rate limit and a subscription icon
-- [x] Slider based on amount spent and available to spent
+- [x] Design UI of both type of cards based on the design provided
+- [ ] Card should be grouped ~ filtered into tabs
+- [ ] User can create card and see it on `your` tab
 - [ ] Add enough cards to experience pagination
+- [ ] Pagination with limit of 10 cards/page
 - [ ] Search by card name
 - [ ] Filter card by card_type
-- [ ] Card should be grouped ~ filtered into tabs
 
 To run this app on your local machine, follow these steps after clong the repo
 
