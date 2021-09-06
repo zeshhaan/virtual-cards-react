@@ -89,7 +89,7 @@ const Header = () => {
                       >
                         Create your card
                       </Dialog.Title>
-                      <form onSubmit={handleSubmit(onSubmit)}>
+                      <form onSubmit={handleSubmit(onSubmit)} id="hook-form">
                         <div className="mt-6 sm:mt-5 space-y-6 sm:space-y-2">
                           <label
                             htmlFor="cardName"
@@ -200,8 +200,9 @@ const Header = () => {
                       <div className="mt-4 flex gap-2">
                         <button
                           type="submit"
+                          form="hook-form"
                           className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-500 border border-transparent rounded-md hover:bg-green-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                          // onClick={closeModal}
+                          onClick={closeModal}
                         >
                           Add Card
                         </button>
