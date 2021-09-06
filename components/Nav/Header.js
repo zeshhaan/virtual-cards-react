@@ -1,8 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from "yup";
 
 const Header = () => {
   let [isOpen, setIsOpen] = useState(false);
@@ -10,18 +8,12 @@ const Header = () => {
   function closeModal() {
     setIsOpen(false);
   }
-  const validationSchema = Yup.object().shape({
-    cardName: Yup.string().required("Card Name is required"),
-    budgetName: Yup.string().required("Budget Name is required"),
-    amount: Yup.string().required("Amount is required"),
-  });
-  const formOptions = { resolver: yupResolver(validationSchema) };
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm(formOptions);
+  } = useForm();
 
   // const onSubmit = (data) => console.log(data);
   function onSubmit(data) {
@@ -106,10 +98,12 @@ const Header = () => {
                               {...register("cardName", { required: true })}
                               className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-pink-500 focus:ring-1 focus:ring-pink-500"
                             />
-                            <div className="text-red-500">
-                              {errors.cardName?.message}
-                            </div>
                           </div>
+                          {errors.cardName?.type === "required" && (
+                            <p className="text-red-500">
+                              Card Name is required
+                            </p>
+                          )}
                         </div>
                         <div className="max-w-lg mt-6 sm:mt-5 space-y-6 sm:space-y-2">
                           <p className="text-sm text-gray-500">Type of Card</p>
@@ -160,10 +154,12 @@ const Header = () => {
                               placeholder="Software Subscription"
                               {...register("budgetName", { required: true })}
                             />
-                            <div className="text-red-500">
-                              {errors.budgetName?.message}
-                            </div>
                           </div>
+                          {errors.budgetName?.type === "required" && (
+                            <p className="text-red-500">
+                              Budget Name is required
+                            </p>
+                          )}
                         </div>
                         <div className="mt-6 sm:mt-5 space-y-6 sm:space-y-2">
                           <label
@@ -190,10 +186,12 @@ const Header = () => {
                                 min: 10,
                               })}
                             />
-                            <div className="text-red-500">
-                              {errors.amount?.message}
-                            </div>
                           </div>
+                          {errors.amount?.type === "required" && (
+                            <p className="text-red-500">
+                              Enter an Amount to add
+                            </p>
+                          )}
                         </div>
                       </form>
 
