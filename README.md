@@ -18,6 +18,8 @@
 - [ ] Add basic auth
 - [ ] Navigate through tabs
 
+> It's recommended to run it on local machine as there is a CORS error on prod url.
+
 To run this app on your local machine, follow these steps after clong the repo
 
 ```bash
