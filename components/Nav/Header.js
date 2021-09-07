@@ -23,12 +23,6 @@ const Header = () => {
     formState: { errors },
   } = useForm();
 
-  // const onSubmit = (data) => console.log(data);
-  // function onSubmit(data) {
-  //   // display form data on success
-  //   alert("SUCCESS!! :-)\n\n" + JSON.stringify(data, null, 4));
-  //   return false;
-  // }
 
   function onSubmit(data) {
     return createUser(data);
