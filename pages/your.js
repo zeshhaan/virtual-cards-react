@@ -1,7 +1,11 @@
-import React from "react";
+import Head from "next/head";
+import Nav from "../components/Nav";
+import Main from "../components/Main";
 
-const your = () => {
-  return <div></div>;
-};
-
-export default your;
+export default function Home() {
+  return (
+    <Nav>
+      <Main />
+    </Nav>
+  );
+}
