@@ -184,8 +184,8 @@ export default function Home() {
                         className="w-10 h-10 bg-pink-50 rounded-full flex-shrink-0 shadow-md p-2"
                         src={`${
                           card.card_type == "subscription"
-                            ? "/burner.svg"
-                            : "/subscription.svg"
+                            ? "/subscription.svg"
+                            : "/burner.svg"
                         }`}
                         alt={card.card_type}
                       />
